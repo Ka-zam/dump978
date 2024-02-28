@@ -257,7 +257,7 @@ static int encode_imf(struct uat_adsb_mdb *mdb)
 
 static void send_altitude_only(struct uat_adsb_mdb *mdb)
 {
-    uint8_t esnt_frame[14];
+    uint8_t esnt_frame[14] = {};
     int raw_alt;
 
     // Need barometric altitude, see if we have it
@@ -288,7 +288,7 @@ static void send_altitude_only(struct uat_adsb_mdb *mdb)
 
 static void maybe_send_surface_position(struct uat_adsb_mdb *mdb)
 {
-    uint8_t esnt_frame[14];
+    uint8_t esnt_frame[14] = {};
 
     if (mdb->airground_state != AG_GROUND)
         return; // nope!
@@ -330,7 +330,7 @@ static void maybe_send_surface_position(struct uat_adsb_mdb *mdb)
 
 static void maybe_send_air_position(struct uat_adsb_mdb *mdb)
 {
-    uint8_t esnt_frame[14];
+    uint8_t esnt_frame[14] = {};
     int raw_alt;
 
     if (mdb->airground_state != AG_SUPERSONIC && mdb->airground_state != AG_SUBSONIC)
@@ -383,7 +383,7 @@ static void maybe_send_air_position(struct uat_adsb_mdb *mdb)
 
 static void maybe_send_air_velocity(struct uat_adsb_mdb *mdb)
 {
-    uint8_t esnt_frame[14];
+    uint8_t esnt_frame[14] = {};
     int supersonic;
 
     if (mdb->airground_state != AG_SUPERSONIC && mdb->airground_state != AG_SUBSONIC)
@@ -515,7 +515,7 @@ static int mapSquawkToEmergency(const char *squawkStr)
 
 static void maybe_send_callsign(struct uat_adsb_mdb *mdb)
 {
-    uint8_t esnt_frame[14];
+    uint8_t esnt_frame[14] = {};
     int imf = encode_imf(mdb);
 
     switch (mdb->callsign_type) {
